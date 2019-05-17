@@ -1,5 +1,5 @@
 import React from 'react'
-import './flipclock.sass'
+import './flipcounter.sass'
 
 export default class FlipCounter extends React.Component {
     constructor(props) {
