@@ -1,19 +1,18 @@
 import React from 'react'
-import './flipcounter.sass'
+import { FlipUnit } from './flipunit'
 
 export default class FlipCounter extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            newNum: (new Date).getSeconds() === 0 ? 60 : (new Date).getSeconds(),
-            oldNum: (new Date).getSeconds() - 1 === -1 ? 59 : (new Date).getSeconds() - 1,
-            change: true
-        }
+            seconds: 0,
+            secondsShuffle: true
+        };
     }
 
     componentDidMount() {
         this.timerID = setInterval(
-            () => this.tick(),
+            () => this.updateTime(),
             50
         );
     }
@@ -22,41 +21,32 @@ export default class FlipCounter extends React.Component {
         clearInterval(this.timerID);
     }
 
-    tick() {
-        const newNum = ((new Date).getSeconds()) === 0 ? 60 : ((new Date).getSeconds());
-        if (this.state.newNum !== newNum) {
-            const oldNum = newNum - 1 === 0 ? 60 : newNum - 1;
-            const change = !this.state.change;
+    updateTime() {
+        // get new date
+        const time = new Date;
+        // set time units
+        const seconds = time.getSeconds();
+        // on second chanage, update seconds and shuffle state
+        if( seconds !== this.state.seconds) {
+            const secondsShuffle = !this.state.secondsShuffle;
             this.setState({
-                newNum,
-                oldNum,
-                change
+                seconds,
+                secondsShuffle
             });
         }
     }
-
     render() {
-        const { newNum, oldNum, change } = this.state;
-        const animation1 = change ? 'fold' : 'unfold';
-        const animation2 = !change ? 'fold' : 'unfold';
-        const number1 = change ? oldNum : newNum;
-        const number2 = !change ? oldNum : newNum;
+        const { 
+            seconds, 
+            secondsShuffle 
+          } = this.state;
 
         return (
-            <div className={'flipCounter'}>
-                <div className={'upperCard'}>
-                    <span>{newNum}</span>
-                </div>
-                <div className={'lowerCard'}>
-                    <span>{oldNum}</span>
-                </div>
-                <div className={`flipCard first ${animation1}`}>
-                    <span>{number1}</span>
-                </div>
-                <div className={`flipCard second ${animation2}`}>
-                    <span>{number2}</span>
-                </div>
-            </div>
+            <FlipUnit
+                max={60}
+                digit={seconds}
+                shuffle={secondsShuffle}
+            />
         );
     }
 }
