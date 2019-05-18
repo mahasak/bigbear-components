@@ -1,4 +1,4 @@
 /* eslint-disable global-require */
 module.exports = {
-    FlipClock: require('./flipclock').default,
+    FlipCount: require('./flipcounter').default,
 };
