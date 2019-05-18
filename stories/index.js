@@ -4,6 +4,7 @@ import { Button } from '@storybook/react/demo'
 import FlipCounter from '../widget/flipcounter'
 
 import { FlipUnit } from '../widget/flipunit'
+import FlipClock from '../widget/flipclock'
 
 storiesOf('Button', module)
     .add('with text', () => (<Button>Hello Button</Button>))
@@ -19,6 +20,7 @@ storiesOf('FlipUnit', module)
 storiesOf('FlipCount', module)
     .add('default', () => (<FlipCounter />))
 
-
+storiesOf('FlipClock', module)
+    .add('default', () => (<FlipClock />))
 
 

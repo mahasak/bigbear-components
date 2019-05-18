@@ -7,14 +7,14 @@ export default class FlipCounter extends React.Component {
         this.state = {
             seconds: 0,
             secondsShuffle: true
-        };
+        }
     }
 
     componentDidMount() {
         this.timerID = setInterval(
             () => this.updateTime(),
             50
-        );
+        )
     }
 
     componentWillUnmount() {
@@ -30,14 +30,14 @@ export default class FlipCounter extends React.Component {
             this.setState({
                 seconds,
                 secondsShuffle
-            });
+            })
         }
     }
     render() {
         const {
             seconds,
             secondsShuffle
-        } = this.state;
+        } = this.state
 
         return (
             <FlipUnit
@@ -45,6 +45,6 @@ export default class FlipCounter extends React.Component {
                 digit={seconds}
                 shuffle={secondsShuffle}
             />
-        );
+        )
     }
 }
