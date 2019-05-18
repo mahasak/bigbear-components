@@ -17,7 +17,7 @@ const StaticCard = ({ position, digit }) => {
     )
 }
 
-const padZero = (num) => ( num < 10 ) ? `0${num}` : num
+const padZero = (num) => (num < 10) ? `0${num}` : num
 
 export const FlipUnit = ({ digit, shuffle, max }) => {
 

@@ -22,12 +22,10 @@ export default class FlipCounter extends React.Component {
     }
 
     updateTime() {
-        // get new date
         const time = new Date;
-        // set time units
         const seconds = time.getSeconds();
-        // on second chanage, update seconds and shuffle state
-        if( seconds !== this.state.seconds) {
+
+        if (seconds !== this.state.seconds) {
             const secondsShuffle = !this.state.secondsShuffle;
             this.setState({
                 seconds,
@@ -36,10 +34,10 @@ export default class FlipCounter extends React.Component {
         }
     }
     render() {
-        const { 
-            seconds, 
-            secondsShuffle 
-          } = this.state;
+        const {
+            seconds,
+            secondsShuffle
+        } = this.state;
 
         return (
             <FlipUnit
