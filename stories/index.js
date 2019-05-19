@@ -22,7 +22,7 @@ storiesOf('FlipCounter', module)
     .add('default', () => (<FlipCounter />))
 
     storiesOf('FlipCountdown', module)
-    .add('default', () => (<FlipCountdown minutes={2} />))
+    .add('default', () => (<FlipCountdown minutes={1} />))
 
 storiesOf('FlipClock', module)
     .add('default', () => (<FlipClock />))
