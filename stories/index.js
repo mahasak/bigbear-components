@@ -5,6 +5,7 @@ import FlipCounter from '../widget/flipcounter'
 
 import { FlipUnit } from '../widget/flipunit'
 import FlipClock from '../widget/flipclock'
+import FlipCountdown from '../widget/flipcountdown'
 
 storiesOf('Button', module)
     .add('with text', () => (<Button>Hello Button</Button>))
@@ -17,8 +18,11 @@ storiesOf('FlipUnit', module)
         shuffle={true}
     />))
 
-storiesOf('FlipCount', module)
+storiesOf('FlipCounter', module)
     .add('default', () => (<FlipCounter />))
+
+    storiesOf('FlipCountdown', module)
+    .add('default', () => (<FlipCountdown minutes={2} />))
 
 storiesOf('FlipClock', module)
     .add('default', () => (<FlipClock />))

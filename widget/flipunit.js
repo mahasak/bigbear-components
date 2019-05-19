@@ -21,8 +21,13 @@ const padZero = (num) => (num < 10) ? `0${num}` : num
 const calculatePrevious = (digit, direction, triggerValue) => {
     let previousDigit = (direction === 'up')
         ? digit - 1
-        : digit + 1
-    return padZero((previousDigit === -1) ? triggerValue -1 : previousDigit)
+        : (digit == 0) ? 0 : digit + 1
+
+    previousDigit = (direction === 'down' && previousDigit === 60) ? 0 : previousDigit
+
+    return (direction === 'down')
+        ? padZero(previousDigit)
+        : padZero((previousDigit === -1) ? triggerValue - 1 : previousDigit)
 }
 
 export const FlipUnit = ({ digit, shuffle, triggerValue, direction }) => {
