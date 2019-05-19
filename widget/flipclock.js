@@ -73,19 +73,22 @@ export default class FlipClock extends React.Component {
         return (
             <div className={'flipClock'}>
                 <FlipUnit
-                    max={60}
+                    triggerValue={60}
                     digit={hours}
                     shuffle={hoursShuffle}
+                    direction='up'
                 />
                 <FlipUnit
-                    max={60}
+                    triggerValue={60}
                     digit={minutes}
                     shuffle={minutesShuffle}
+                    direction='up'
                 />
                 <FlipUnit
-                    max={60}
+                    triggerValue={60}
                     digit={seconds}
                     shuffle={secondsShuffle}
+                    direction='up'
                 />
             </div>
         )

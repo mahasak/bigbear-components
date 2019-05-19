@@ -41,9 +41,10 @@ export default class FlipCounter extends React.Component {
 
         return (
             <FlipUnit
-                max={60}
+                triggerValue={60}
                 digit={seconds}
                 shuffle={secondsShuffle}
+                direction='up'
             />
         )
     }

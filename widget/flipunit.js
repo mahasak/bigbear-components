@@ -18,17 +18,17 @@ const StaticCard = ({ position, digit }) => {
 }
 
 const padZero = (num) => (num < 10) ? `0${num}` : num
+const calculatePrevious = (digit, direction, triggerValue) => {
+    let previousDigit = (direction === 'up')
+        ? digit - 1
+        : digit + 1
+    return padZero((previousDigit === -1) ? triggerValue -1 : previousDigit)
+}
 
-export const FlipUnit = ({ digit, shuffle, max }) => {
+export const FlipUnit = ({ digit, shuffle, triggerValue, direction }) => {
 
-    let currentDigit = digit
-    let previousDigit = digit - 1
-
-    // prevent a negative value
-    previousDigit = previousDigit === -1 ? max : previousDigit
-
-    currentDigit = padZero(currentDigit)
-    previousDigit = padZero(previousDigit)
+    let currentDigit = padZero(digit)
+    let previousDigit = calculatePrevious(digit, direction, triggerValue)
 
     // shuffle digits
     const digit1 = shuffle ? previousDigit : currentDigit
