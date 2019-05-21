@@ -5,41 +5,76 @@ export default class PomodoroTimer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            minutesSession: 1,
+            minutesBreak: 1,
             startTimer: false,
             startBreak: false,
         }
     }
 
-    componentDidMount() {
-        this.timerID = setInterval(
-            () => this.updateTime(),
-            5000
+    _startSession = ()=> {
+        this.setState({startTimer: true})
+    }
+
+    _stopSession = ()=> {
+        this.setState({startTimer: false})
+    }
+
+    _startBreak = () => {
+        this.setState(
+            {
+                startBreak: true,
+                startTimer: false
+            }
         )
     }
 
-    updateTime() {
-        this.setState({startTimer: true})
+    _resetSession = () => {
+        this.setState(
+            {
+                startBreak: false,
+                startTimer: false
+            }
+        )
     }
 
-    _start = ()=> {
-        this.setState({startTimer: true})
+    _completeSession = () => {
+        this._startBreak()
     }
 
-    _stop= ()=> {
-        this.setState({startTimer: false})
+    _completeBreak = () => {
+        this.setState(
+            {
+                startBreak: false,
+                startTimer: false
+            }
+        )
     }
 
     render() {
         return (
-            <div className={'flipCountdown'}>
-                <div>
-                    <FlipCountdown minutes={25} start={this.state.startTimer}/>
+            <div>
+                <div className={'flipCountdown'}>
+                    <div>
+                        <FlipCountdown 
+                            minutes={this.state.minutesSession} 
+                            seconds={0}
+                            start={this.state.startTimer}
+                            callback={this._completeSession}
+                        />
+                    </div>
+                    <div>
+                        <FlipCountdown 
+                            minutes={this.state.minutesBreak} 
+                            seconds={0}
+                            start={this.state.startBreak}
+                            callback={this._completeBreak}
+                        />
+                    </div>
                 </div>
-                <div>
-                    <FlipCountdown minutes={5} start={this.state.startBreak}/>
-                </div>
-                <button onClick={this._start}>Start</button>
-                <button onClick={this._stop}>Stop</button>
+                <button onClick={this._startSession}>Start</button>
+                <button onClick={this._stopSession}>Stop</button>
+                <button onClick={this._resetSession}>Reset</button>
             </div>
         )
     }
