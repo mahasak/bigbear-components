@@ -5,10 +5,11 @@ export default class FlipCountdown extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            minutes: this.props.minutes -1,
-            seconds: 59,
+            minutes: this.props.minutes,
+            seconds: 0,
             minuteShuffle: true,
             secondShuffle: true,
+            start: this.props.start,
             stop: false
         }
     }
@@ -24,12 +25,17 @@ export default class FlipCountdown extends React.Component {
         clearInterval(this.timerID);
     }
 
+    UNSAFE_componentWillUpdate(nextProps, nextState) {
+        if(this.state.start != nextProps.start)
+            this.setState({start: nextProps.start})
+    }
+
     updateTime() {
+        if (!this.state.start) return;
         const nextValue = (this.state.seconds - 1) < 0 ? 59 : this.state.seconds - 1
         const shuffle = !this.state.secondShuffle;
         const minshuffle = !this.state.minuteShuffle;
-        
-        
+            
         this.setState({
             seconds: nextValue,
             secondShuffle: shuffle
