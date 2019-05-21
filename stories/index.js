@@ -7,6 +7,7 @@ import { FlipUnit } from '../widget/flipunit'
 import FlipClock from '../widget/flipclock'
 import FlipCountdown from '../widget/flipcountdown'
 import FlipTimer from '../widget/fliptimer'
+import PomodoroTimer from '../widget/pomodoro'
 
 storiesOf('Button', module)
     .add('with text', () => (<Button>Hello Button</Button>))
@@ -23,7 +24,7 @@ storiesOf('FlipCounter', module)
     .add('default', () => (<FlipCounter />))
 
 storiesOf('FlipCountdown', module)
-    .add('default', () => (<FlipCountdown minutes={1} />))
+    .add('default', () => (<FlipCountdown minutes={1} start={true}/>))
 
 storiesOf('FlipTimer', module)
     .add('default', () => (<FlipTimer minutes={2} />))
@@ -31,4 +32,5 @@ storiesOf('FlipTimer', module)
 storiesOf('FlipClock', module)
     .add('default', () => (<FlipClock />))
 
-
+storiesOf('PomodoroTimer', module)
+    .add('default', () => (<PomodoroTimer />))
