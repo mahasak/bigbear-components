@@ -21,13 +21,24 @@ export default class FlipCountdown extends React.Component {
         )
     }
 
+    completeCallBack = () => {
+        this.props.callback()
+    }
+
     componentWillUnmount() {
         clearInterval(this.timerID);
     }
 
     UNSAFE_componentWillUpdate(nextProps, nextState) {
-        if(this.state.start != nextProps.start)
-            this.setState({start: nextProps.start})
+        if(this.state.start != nextProps.start) {
+            this.setState(
+                {
+                    start: nextProps.start,
+                    minutes: nextProps.minutes,
+                    seconds: nextProps.seconds,
+                }
+            )
+        }            
     }
 
     updateTime() {
@@ -53,6 +64,7 @@ export default class FlipCountdown extends React.Component {
                     secondShuffle: false,
                     stop: true
                 })
+                this.completeCallBack()
                 clearInterval(this.timerID)
             }
         }
